@@ -3,13 +3,13 @@ import gulpSass from 'gulp-sass';
 import autoprefixer from 'gulp-autoprefixer';
 import header from 'gulp-header';
 import merge from 'merge-stream';
-import nodeSass from 'node-sass';
+import dartSass from 'sass';
 import paths from '../mconfig.json';
 import pkg from '../package.json';
 import error from './error.js';
 import { server } from './serve.js';
 
-const sass = gulpSass(nodeSass);
+const sass = gulpSass(dartSass);
 
 function styles() {
     const files = [
@@ -23,7 +23,7 @@ function styles() {
        }
     ];
 
-    const streams = files.map((file) => {
+    const streams = files.map((file) => {
         return gulp
             .src(file.src + '**/*.scss')
             .pipe(sass().on('error', function (err) {
